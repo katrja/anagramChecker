@@ -3,11 +3,12 @@ package com.test.anagram.service;
 import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AnagramChecker {
-  Logger logger = LoggerFactory.getLogger(AnagramChecker.class);
+  static final Logger logger = LoggerFactory.getLogger(AnagramChecker.class);
 
   public boolean isAnagram(String subject, String anagram) {
 
@@ -29,7 +30,7 @@ public class AnagramChecker {
         return false;
       }
     }
-    // 2 n log n + n ~ n(log n)
+    //n(log n)
     logger.info("Anagram is valid");
     return true;
   }

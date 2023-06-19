@@ -16,6 +16,10 @@
     </form>
 
   <c:if test="${pageContext.request.method=='POST'}">
+
+    <p>Result of comparing
+    <span style="font-style:italic">${subject}</span> and <span style="font-style:italic">${anagram}</span></p>
+
       <c:choose>
         <c:when test="${isValidAnagram}">
             <font color="green">A valid anagram!</font><br />

@@ -21,8 +21,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class AnagramCheckerControllerTest {
+    static final Logger logger = LoggerFactory.getLogger(AnagramCheckerControllerTest.class);
 
-    Logger logger = LoggerFactory.getLogger(AnagramCheckerControllerTest.class);
     @Autowired
     private AnagramCheckerController controller;
 
