@@ -5,11 +5,12 @@ It's test java program that checks if two texts are anagrams of each other.
 Anagram definition was taken from https://en.wikipedia.org/wiki/Anagram.
 
 As a given requirement, I considered to accept text with numbers and special cherecters, but they are ignored during comparison.
-UI is a simple JSP page, it has 2 inputs (not blank and less than 200 symbols) and click” Submit" button. Result will be shown below the form.
+UI is a simple JSP page, it has 2 inputs (not blank and less than 200 symbols, at least one letter considred as word) and click” Submit" button. Result will be shown below the form.
 
 Used technologies:
  - Java 17
  - Spring Boot 3.0.1 framework
+ 
 This app is running in Docker container.
 
 How to run/test it:
