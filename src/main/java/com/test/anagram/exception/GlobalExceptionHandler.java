@@ -41,12 +41,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     return pathImpl.getLeafNode().toString();
   }
 
-  private Map<String, List<String>> getErrorsMap(List<String> errors) {
-    Map<String, List<String>> errorResponse = new HashMap<>();
-    errorResponse.put("errors", errors);
-    return errorResponse;
-  }
-
   @ExceptionHandler(ValidationMessageException.class)
   public final ModelAndView handleValidationMessageException(ValidationMessageException ex) {
     ModelAndView modelAndView = new ModelAndView();

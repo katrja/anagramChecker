@@ -12,8 +12,8 @@ public class AnagramChecker {
 
   static final Logger logger = LoggerFactory.getLogger(AnagramChecker.class);
 
+  /** Algorithm complexity is O(nlogn) */
   public boolean isAnagram(String subject, String anagram) {
-
     subject = normalizeText(subject);
     anagram = normalizeText(anagram);
 
@@ -22,15 +22,12 @@ public class AnagramChecker {
     }
 
     if (subject.length() != anagram.length()) {
-      logger.info(
-          String.format("Different length after normalization of strings: %s and %s", subject,
-              anagram));
+      logger.info(String.format("Different length after normalization of strings: %s and %s", subject, anagram));
       return false;
     }
     char[] subjectArray = toSortedArray(subject);
     char[] anagramArray = toSortedArray(anagram);
 
-    //O(nlogn)
     return Arrays.equals(subjectArray, anagramArray);
   }
 
