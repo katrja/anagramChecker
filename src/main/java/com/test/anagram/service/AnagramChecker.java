@@ -1,13 +1,15 @@
 package com.test.anagram.service;
 
+import com.test.anagram.exception.ValidationMessageException;
 import java.util.Arrays;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AnagramChecker {
+
   static final Logger logger = LoggerFactory.getLogger(AnagramChecker.class);
 
   public boolean isAnagram(String subject, String anagram) {
@@ -15,29 +17,26 @@ public class AnagramChecker {
     subject = normalizeText(subject);
     anagram = normalizeText(anagram);
 
+    if (Strings.isBlank(subject) || Strings.isBlank(anagram)) {
+      throw new ValidationMessageException();
+    }
+
     if (subject.length() != anagram.length()) {
-      logger.info("Different length after normalization");
+      logger.info(
+          String.format("Different length after normalization of strings: %s and %s", subject,
+              anagram));
       return false;
     }
-    //2 * (n log n)
     char[] subjectArray = toSortedArray(subject);
     char[] anagramArray = toSortedArray(anagram);
 
-    // n
-    for (int i = 0; i < subjectArray.length; i++) {
-      if (subjectArray[i] != anagramArray[i]) {
-        logger.info("Anagram is not valid");
-        return false;
-      }
-    }
-    //n(log n)
-    logger.info("Anagram is valid");
-    return true;
+    //O(nlogn)
+    return Arrays.equals(subjectArray, anagramArray);
   }
 
-  private String normalizeText(String text){
+  private String normalizeText(String text) {
     String normalizedText = text.trim().replaceAll("[^a-zA-Z]", "").toLowerCase();
-    logger.info("normalizedText="  + normalizedText);
+    logger.info("normalizedText=" + normalizedText);
     return normalizedText;
   }
 
